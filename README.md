@@ -4,11 +4,11 @@
 * Install **opencv**, **streamlit** using pip
 * Download **yolov3.weights** from this: https://pjreddie.com/media/files/yolov3. and put it in folder **yolov3_weights**
 * Put 2 folder **yolov3_cfg** and **yolov3_weights** in same directory with app.py
-* I use OpenCV to draw bounding boxes and scores on pictures (use FiroMono font too)
+* I use OpenCV to draw bounding boxes and scores on pictures (with FiroMono font)
 * Just run ```stream run app.py``` in terminal and this web-app will start on your browser
 
 
-#### **For training custom object: detect Mask and Without_mask**
+### **For training custom object: detect Mask and Without_mask**
 * Clone darknet from​ https://github.com/pjreddie/darknet
 * Delete all content in **darknet/cfg** and **darknet/data**
 * Copy 2 folder **data** and **cfg** from **for custom training** to folder darknet \
@@ -20,7 +20,7 @@
 
 The dataset I used is from https://www.kaggle.com/alexandralorenzo/maskdetection
 
-#### **DEMO**
+### **Demo**
 <img src="gui.png" alt="main gui" width="100%"/>
 <img src="demo_1.png" alt="object detection" width="600"/>
 <img src="demo_2.png" alt="mask detection" width="600"/>
