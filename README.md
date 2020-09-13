@@ -18,7 +18,7 @@
 * Run notebook on google colab to get result the weights file from **backup**
 * Change it's name to *yolov3_custom.weights*, download and put it in folder **yolov3_weights**
 
-The dataset I used is from https://www.kaggle.com/alexandralorenzo/maskdetection
+Dataset: https://www.kaggle.com/alexandralorenzo/maskdetection
 
 ### **Demo**
 <img src="gui.png" alt="main gui" width="100%"/>
