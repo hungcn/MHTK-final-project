@@ -25,7 +25,7 @@ def load_model(cfg_path, weights_path, labels_path):
     return [net, layer_names, labels, colors]
 
 # @st.cache
-def process_image(image_path, model_info, score_threshold=0.25, overlap_threshold=0.3):
+def process_image(img, model_info, score_threshold=0.25, overlap_threshold=0.3):
     net, layer_names, labels, colors = model_info
     # load our input image and grab its spatial dimensions
     image = img
