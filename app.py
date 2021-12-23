@@ -20,12 +20,12 @@ def load_model(cfg_path, weights_path, labels_path):
     net = cv2.dnn.readNetFromDarknet(cfg_path, weights_path)
     # determine only the OUPUT layer names that we need from YOLO
     layer_names = net.getLayerNames()
-    layer_names = [layer_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
+    layer_names = [layer_names[i-1] for i in net.getUnconnectedOutLayers()]
 
     return [net, layer_names, labels, colors]
 
 # @st.cache
-def process_image(img, model_info, score_threshold=0.25, overlap_threshold=0.3):
+def process_image(img, model_info, score_threshold=0.3, overlap_threshold=0.3):
     net, layer_names, labels, colors = model_info
     # load our input image and grab its spatial dimensions
     image = img
@@ -88,13 +88,16 @@ def process_image(img, model_info, score_threshold=0.25, overlap_threshold=0.3):
                 origin[1] = top - labelSize[1]
                 
             # draw a bounding box rectangle and label on the image
-            for i in range(thickness):
-                draw.rectangle([left + i, top + i, right - i, bottom - i], outline=color)
+            for j in range(thickness):
+                draw.rectangle([left + j, top + j, right - j, bottom - j], outline=color)
             draw.rectangle([tuple(origin), tuple(origin + labelSize)], fill=color)
             draw.text(origin, label, fill=(0, 0, 0), font=font)
             del draw
-    
+
     image = np.array(img_pil)[:,:, [2, 1, 0]]
+    classIDs = np.array(classIDs)[idxs].tolist()
+    scores = np.array(scores)[idxs].tolist()
+
     return [image, classIDs, scores]
 
 
@@ -113,7 +116,7 @@ st.sidebar.markdown("## Choose detection type:")
 model_type = st.sidebar.radio("", ("COCO dataset objects detection", "Face Mask detection"))
 
 st.sidebar.markdown("## Confidence threshold:")
-score_threshold = st.sidebar.slider("", 0.0, 1.0, 0.4, 0.01)
+score_threshold = st.sidebar.slider("", 0.0, 1.0, 0.35, 0.01)
 st.sidebar.markdown("## Overlap threshold:")
 overlap_threshold = st.sidebar.slider("", 0.0, 1.0, 0.3, 0.01)
 
@@ -121,12 +124,12 @@ overlap_threshold = st.sidebar.slider("", 0.0, 1.0, 0.3, 0.01)
 #=============================== PATH TO config, weights, class names
 if model_type == "Face Mask detection":
     start = time.time()
-    model_info = load_model("yolov3_cfg/yolov3_custom.cfg", "yolov3_weights/yolov3_custom.weights", "custom.names")
+    model_info = load_model("configs/yolov3_custom.cfg", "weights/yolov3_custom.weights", "custom.names")
     end = time.time()
     model_info[-1] = np.array([[0, 235, 43], [0, 0, 255]], dtype="uint8")
 else:
     start = time.time()
-    model_info = load_model("yolov3_cfg/yolov3.cfg", "yolov3_weights/yolov3.weights", "coco.names")
+    model_info = load_model("configs/yolov3.cfg", "weights/yolov3.weights", "coco.names")
     end = time.time()
 
 # styling
@@ -179,7 +182,7 @@ if img_stream:
         st.write("Found ", len(classIDs), " objects")
     labels, colors = model_info[2:]
     for i, j in enumerate(classIDs):
-        color = tuple([int(c) for c in colors[classIDs[i]]])[-1::-1]
+        color = tuple([int(c) for c in colors[j]])[-1::-1]
         st.markdown("""
         <div style='display: flex; justify-content: space-between; width: 50%; align-items:center;'>
             <div style='text-align: left; flex:1; color:rgb{}; font-weight: 500; text-shadow: 1px 0px;'>{}:</div>
