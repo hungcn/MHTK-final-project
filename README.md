@@ -3,7 +3,7 @@
 ### **Local usage:**
 * Download [yolov3.weights](https://pjreddie.com/media/files/yolov3.weights)
 * Download [yolov3_custom.weights](https://drive.google.com/file/d/1qILjpE3s3P9a3eGuX64tT_K6o8YyeDca/view?usp=sharing)
-* Put these weight files in folder **yolov3_weights**
+* Put these weight files in folder **weights**
 * Run ```streamlit run app.py``` in terminal and this web-app will start on your browser
 * Choose detection type and upload image to detect.
 
@@ -16,7 +16,7 @@
 * Zip folder darknet, upload **darknet.zip** and **train_custom.ipynb** to google drive folder
 * Make folder name **backup** in that same gdrive folder
 * Run the notebook on google colab to get the weight in **backup**
-* Change weight's name to **yolov3_custom.weights**, download and put it in folder **yolov3_weights**
+* Change weight's name to **yolov3_custom.weights**, download and put it in folder **weights**
 
 Dataset: https://www.kaggle.com/alexandralorenzo/maskdetection
 
