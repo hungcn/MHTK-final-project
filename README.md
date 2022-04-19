@@ -22,5 +22,5 @@ Dataset: https://www.kaggle.com/alexandralorenzo/maskdetection
 
 ### **Demo**
 <img src="gui.png" alt="main gui" width="100%"/>
-<img src="demo_1.png" alt="object detection" width="600"/>
-<img src="demo_2.png" alt="mask detection" width="600"/>
+<img src="demo_1.png" alt="object detection" width="650"/>
+<img src="demo_2.png" alt="mask detection" width="650"/>
