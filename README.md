@@ -4,7 +4,8 @@
 * Download [yolov3.weights](https://pjreddie.com/media/files/yolov3.weights)
 * Download [yolov3_custom.weights](https://drive.google.com/file/d/1qILjpE3s3P9a3eGuX64tT_K6o8YyeDca/view?usp=sharing)
 * Put these weight files in folder **weights**
-* Run ```streamlit run app.py``` in terminal and this web-app will start on your browser
+* Run ```pip install -r requirements.txt```
+* Run ```streamlit run app.py``` and this web-app will start on your browser
 * Choose detection type and upload image to detect.
 
 
